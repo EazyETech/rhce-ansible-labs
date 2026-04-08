@@ -1,6 +1,6 @@
 ---
 - name: Install and update packages
-  hosts: dev 
+  hosts: webservers
   become: true
   vars: 
     package: "@RPM Development Tools"
