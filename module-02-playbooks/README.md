@@ -25,3 +25,9 @@ This module focused on writing Ansible playbooks to automate system configuratio
 
 ## RHCE Value
 This module builds real-world automation skills by managing packages, repositories, and services — all core objectives for RHCE.
+## How to Run
+
+```bash
+ansible-playbook -i inventory yum.yml
+ansible-playbook -i inventory package.yml
+ansible-playbook -i inventory services.yml
