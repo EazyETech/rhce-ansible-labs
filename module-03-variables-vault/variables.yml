@@ -1,0 +1,14 @@
+---
+- name: Display variables
+  hosts: localhost
+  become: false
+
+  vars:
+    f_name: Erick
+    l_name: Torres
+    age: 29
+
+  tasks:
+    - name: Show user information
+      ansible.builtin.debug:
+        msg: "My name is {{ f_name }} {{ l_name }} and I am {{ age }} years old."
