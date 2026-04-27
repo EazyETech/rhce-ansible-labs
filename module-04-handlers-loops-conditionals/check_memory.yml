@@ -1,0 +1,10 @@
+---
+- name: Check memory and display if above 1000MB
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Display total memory if host has more than 1000MB RAM
+      ansible.builtin.debug:
+        msg: "Total memory: {{ ansible_memtotal_mb }} MB"
+      when: ansible_memtotal_mb > 1000

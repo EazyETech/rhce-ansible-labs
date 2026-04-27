@@ -1,0 +1,29 @@
+---
+- name: Install and configure httpd with handler
+  hosts: all
+  become: true
+
+  handlers:
+    - name: Start httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+  tasks:
+    - name: Install httpd package
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Copy index.html to web root
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+            <body>
+              <h1>Hello from {{ inventory_hostname }}</h1>
+            </body>
+          </html>
+        mode: '0644'
+      notify: Start httpd

@@ -1,0 +1,5 @@
+{% if inventory_hostname in groups['dev'] %}
+Welcome Developer!
+{% else %}
+Welcome to the system!
+{% endif %}

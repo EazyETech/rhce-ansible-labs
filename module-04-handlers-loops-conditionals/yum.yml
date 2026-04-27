@@ -1,0 +1,19 @@
+---
+- name: Add Yum repositories
+  hosts: all
+  become: true
+  task:
+    - name: Add BaseOS Repository
+      ansible.builtin.yum:
+        baseurl: https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/
+        state: present
+        enabled: true
+        gpgcheck: false
+
+    - name: Add AppStream Repository
+      ansible.builtin.yum_repository:
+        name: AppStream
+        description: AppStream Repo
+        baseurl: https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/
+        enabled: true
+        gpgcheck: false

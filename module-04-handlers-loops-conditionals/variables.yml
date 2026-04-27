@@ -1,0 +1,16 @@
+---
+
+- name: Defining Variables in vars section
+  hosts: localhost
+  become: true 
+  vars:
+    f_name: Erick 
+    l_name: Torres
+    age: 29 
+
+  tasks:
+    - name: Printing variable outcome
+      ansible.builtin.debug:
+        msg: "My name is {{ f_name }} {{ l_name }} and I am {{ age }} years old."
+
+

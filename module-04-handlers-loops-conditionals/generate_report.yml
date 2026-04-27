@@ -1,0 +1,11 @@
+---
+- name: Generate system report using Jinja2 template
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Deploy system report to each host
+      ansible.builtin.template:
+        src: /home/automation/ansible1/system_report.j2
+        dest: /tmp/system_report.txt
+        mode: '0644'

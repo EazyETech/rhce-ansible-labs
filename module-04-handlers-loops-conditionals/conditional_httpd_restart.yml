@@ -1,0 +1,24 @@
+---
+- name: Conditional httpd config deploy with handler
+  hosts: all
+  become: true
+
+  handlers:
+    - name: Restart httpd
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+
+  tasks:
+    - name: Install httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Deploy Apache config from template
+      ansible.builtin.template:
+        src: /home/automation/ansible1/apache.conf.j2
+        dest: /etc/httpd/conf.d/custom.conf
+        mode: '0644'
+      when: inventory_hostname in groups['webservers']
+      notify: Restart httpd

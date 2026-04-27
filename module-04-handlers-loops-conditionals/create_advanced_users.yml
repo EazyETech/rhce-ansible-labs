@@ -1,0 +1,16 @@
+---
+- name: Create users with a loop of dictionaries
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create advanced users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        shell: "{{ item.shell }}"
+        comment: "{{ item.comment }}"
+        state: present
+      loop:
+        - { name: jsmith,   shell: /bin/bash, comment: "John Smith" }
+        - { name: mjones,   shell: /bin/bash, comment: "Mary Jones" }
+        - { name: rgarcia,  shell: /bin/sh,   comment: "Roberto Garcia" }

@@ -1,0 +1,13 @@
+---
+- name: Create special.txt only on test group hosts
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create /etc/special.txt on test group only
+      ansible.builtin.file:
+        path: /etc/special.txt
+        state: touch
+        mode: '0644'
+      when: inventory_hostname in groups['test']
+

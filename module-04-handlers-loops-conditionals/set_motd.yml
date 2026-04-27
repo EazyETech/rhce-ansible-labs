@@ -1,0 +1,11 @@
+---
+- name: Deploy MOTD using Jinja2 template
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Deploy motd template
+      ansible.builtin.template:
+        src: /home/automation/ansible1/motd.j2
+        dest: /etc/motd
+        mode: '0644'
